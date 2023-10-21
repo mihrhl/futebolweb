@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+    <title>Futebolweb</title>
+
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: darkgreen;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        .center-line {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background-color: white;
+            left: 50%;
+            transform: translateX(-1px);
+        }
+
+
+        .side-lines {
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: gray;
+        }
+
+
+        .side-lines.left {
+            left: 0;
+        }
+
+
+        .side-lines.right {
+            right: 0;
+        }
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+
+
+        #bola {
+            width: 75px;
+            height: 75px;
+            background-color: white;
+            border: 2px solid black; /* Adiciona uma borda à bola */
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            transition: left 0.5s, top 0.5s;
+        }
+
+
+        .gol-vertical {
+            position: absolute;
+            width: 65px;
+            height: 200px;
+            background: linear-gradient(to bottom, black 50%, white 50%); /* Padrão xadrez para os gols */
+        }
+
+
+        .gol-vertical.left {
+            left: 0;
+            top: calc(50% - 100px);
+            border-top: 2px solid red; /* Adiciona uma borda vermelha na parte superior */
+            border-bottom: 2px solid red; /* Adiciona uma borda vermelha na parte inferior */
+        }
+
+
+        .gol-vertical.right {
+            right: 0;
+            top: calc(50% - 100px);
+            border-top: 2px solid red; /* Adiciona uma borda vermelha na parte superior */
+            border-bottom: 2px solid red; /* Adiciona uma borda vermelha na parte inferior */
+        }
+
+
+        .ponto-vermelho {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            top: calc(50% - 5px);
+        }
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="center-line" style="height: 789px;"></div>
+    <div class="side-lines left"></div>
+    <div class="side-lines right"></div>
+    <div class="container">
+        <div id="bola"></div>
+    </div>
+    <div class="gol-vertical left">
+        
+        
+    </div>
+    <div class="gol-vertical right">
+        
+        
+    </div>
+    <script>
+        const bola = document.getElementById('bola');
+        const centerLine = document.querySelector('.center-line');
+
+        bola.addEventListener('click', () => {
+            const maxWidth = window.innerWidth - bola.clientWidth;
+            const maxHeight = window.innerHeight - bola.clientHeight;
+
+            const randomX = Math.random() * maxWidth;
+            const randomY = Math.random() * maxHeight;
+
+            bola.style.left = randomX + 'px';
+            bola.style.top = randomY + 'px';
+        });
+
+        window.addEventListener('resize', () => {
+            centerLine.style.height = window.innerHeight + 'px';
+        });
+    </script>
+
+
+</body>
+
+
+</html>
